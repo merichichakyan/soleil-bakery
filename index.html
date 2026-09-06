@@ -88,190 +88,333 @@
   .btn-ghost:hover{background:var(--chocolate);color:var(--milk)}
   .menu-toggle{display:none;background:none;border:none;cursor:pointer;color:var(--chocolate)}
 
-  /* HERO — PREMIUM */
+  /* HERO — PREMIUM EDITORIAL */
   .hero{
     min-height:100vh;
-    padding:120px 0 60px;
+    padding:130px 0 80px;
     position:relative;
     background:
-      radial-gradient(ellipse at 80% 20%, rgba(201,160,99,.18), transparent 50%),
-      radial-gradient(ellipse at 10% 80%, rgba(107,142,107,.12), transparent 50%),
-      linear-gradient(180deg, var(--cream-soft) 0%, var(--cream) 100%);
+      radial-gradient(ellipse at 85% 15%, rgba(201,160,99,.22), transparent 55%),
+      radial-gradient(ellipse at 5% 85%, rgba(107,142,107,.12), transparent 55%),
+      linear-gradient(180deg, var(--cream-soft) 0%, #F3E5CE 100%);
     overflow:hidden;
   }
   .hero::before{
     content:"";position:absolute;inset:0;
     background-image:
-      radial-gradient(circle at 1px 1px, rgba(62,42,31,.04) 1px, transparent 0);
-    background-size: 32px 32px;
+      radial-gradient(circle at 1px 1px, rgba(62,42,31,.035) 1px, transparent 0);
+    background-size: 36px 36px;
     pointer-events:none;
   }
-  .hero-ornament{
-    position:absolute;top:130px;left:50%;transform:translateX(-50%);
-    display:flex;align-items:center;gap:14px;
-    color:var(--gold);font-size:11px;letter-spacing:.4em;text-transform:uppercase;
-    font-weight:500;opacity:.7;
+  .hero::after{
+    content:"";position:absolute;
+    bottom:0;left:0;right:0;height:120px;
+    background:linear-gradient(180deg,transparent,var(--milk));
+    pointer-events:none;
   }
-  .hero-ornament .line{width:60px;height:1px;background:var(--gold);opacity:.5}
+
+  /* Vertical side label — editorial touch */
+  .hero-side-label{
+    position:absolute;
+    left:28px;top:50%;transform:translateY(-50%) rotate(-90deg);
+    transform-origin:left center;
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:13px;
+    letter-spacing:.35em;
+    color:var(--chocolate-soft);
+    opacity:.55;
+    z-index:3;
+    white-space:nowrap;
+  }
+  .hero-side-label::before,
+  .hero-side-label::after{
+    content:"";display:inline-block;
+    width:30px;height:1px;background:var(--gold);
+    vertical-align:middle;margin:0 14px;opacity:.6;
+  }
+
+  /* Top ornamental line */
+  .hero-ornament-top{
+    position:absolute;top:120px;left:50%;transform:translateX(-50%);
+    display:flex;align-items:center;gap:14px;
+    color:var(--gold);font-size:10px;letter-spacing:.5em;text-transform:uppercase;
+    font-weight:500;opacity:.75;
+    z-index:3;
+  }
+  .hero-ornament-top .line{width:70px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .hero-ornament-top .diamond{
+    width:6px;height:6px;background:var(--gold);
+    transform:rotate(45deg);
+  }
 
   .hero-grid{
     display:grid;
-    grid-template-columns: 1.05fr 1fr;
+    grid-template-columns: 1.1fr 1fr;
     gap:80px;
     align-items:center;
     position:relative;
     z-index:2;
   }
   .hero-text{position:relative}
+
+  /* Premium badge — refined monogram */
   .hero-badge{
-    display:inline-flex;align-items:center;gap:10px;
-    padding:8px 18px;border-radius:999px;
-    background:rgba(255,251,245,.9);
-    border:1px solid rgba(201,160,99,.3);
-    font-size:11px;font-weight:600;color:var(--chocolate-soft);
-    letter-spacing:.15em;text-transform:uppercase;
-    margin-bottom:32px;
-    box-shadow:0 4px 20px rgba(201,160,99,.08);
+    display:inline-flex;align-items:center;gap:14px;
+    margin-bottom:36px;
   }
-  .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(107,142,107,.2)}
+  .hero-badge .monogram{
+    width:56px;height:56px;border-radius:50%;
+    background:linear-gradient(135deg,var(--gold-soft) 0%,var(--gold) 60%,var(--gold-deep) 100%);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--milk);
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-size:26px;font-weight:700;
+    box-shadow:
+      0 0 0 4px var(--milk),
+      0 0 0 5px var(--gold),
+      0 12px 30px rgba(201,160,99,.35);
+    position:relative;
+  }
+  .hero-badge .monogram::after{
+    content:"";position:absolute;inset:-8px;
+    border:1px dashed var(--gold);border-radius:50%;
+    opacity:.4;
+    animation:spin 40s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .hero-badge .badge-text{
+    display:flex;flex-direction:column;gap:2px;
+  }
+  .hero-badge .badge-text .est{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:12px;
+    color:var(--gold-deep);
+    letter-spacing:.2em;
+  }
+  .hero-badge .badge-text .name{
+    font-family:'Playfair Display',serif;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--chocolate);
+  }
+
   .hero h1{
     font-family:'Playfair Display',serif;
-    font-size:clamp(52px,6.5vw,92px);
-    line-height:1.02;
-    margin-bottom:28px;
-    font-weight:700;
-    letter-spacing:-.02em;
+    font-size:clamp(54px,7vw,100px);
+    line-height:.98;
+    margin-bottom:32px;
+    font-weight:400;
+    letter-spacing:-.025em;
   }
-  .hero h1 .line1{display:block;color:var(--chocolate)}
+  .hero h1 .line1{
+    display:block;
+    color:var(--chocolate);
+    font-style:italic;
+    font-weight:400;
+  }
   .hero h1 .line2{
     display:block;
+    font-weight:700;
+    font-style:normal;
+    color:var(--chocolate);
+    padding-left:60px;
+    position:relative;
+    margin-top:8px;
+  }
+  .hero h1 .line2::before{
+    content:"";position:absolute;left:0;top:55%;
+    width:40px;height:1px;background:var(--gold);
+  }
+  .hero h1 .line2 .amp{
     font-style:italic;
     font-weight:400;
     color:var(--gold-deep);
-    padding-left:40px;
-    position:relative;
-  }
-  .hero h1 .line2::before{
-    content:"";position:absolute;left:0;top:50%;
-    width:24px;height:1px;background:var(--gold);
-  }
-  .hero-tag{
-    font-family:'Cormorant Garamond',serif;
-    font-size:22px;
-    font-style:italic;
-    color:var(--chocolate-soft);
-    margin-bottom:40px;
-    max-width:480px;
-    line-height:1.5;
-  }
-  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:56px}
-  .hero-stats{
-    display:flex;gap:48px;
-    padding-top:36px;
-    border-top:1px solid rgba(62,42,31,.1);
-  }
-  .stat-num{
-    font-family:'Playfair Display',serif;
-    font-size:36px;color:var(--chocolate);font-weight:700;
-    line-height:1;
-  }
-  .stat-label{
-    font-size:11px;color:var(--muted);
-    margin-top:8px;letter-spacing:.15em;text-transform:uppercase;font-weight:500;
   }
 
-  /* HERO VISUAL — PREMIUM 2-PIC LAYOUT */
+  .hero-tag{
+    font-family:'Cormorant Garamond',serif;
+    font-size:21px;
+    font-style:italic;
+    color:var(--chocolate-soft);
+    margin-bottom:44px;
+    max-width:460px;
+    line-height:1.55;
+    padding-left:20px;
+    border-left:1px solid var(--gold);
+  }
+
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:64px}
+
+  .hero-stats{
+    display:flex;gap:0;
+    padding:28px 0;
+    border-top:1px solid rgba(62,42,31,.12);
+    border-bottom:1px solid rgba(62,42,31,.12);
+    position:relative;
+  }
+  .hero-stat{
+    flex:1;
+    padding:0 24px;
+    position:relative;
+  }
+  .hero-stat + .hero-stat::before{
+    content:"";position:absolute;left:0;top:10%;bottom:10%;
+    width:1px;background:rgba(62,42,31,.15);
+  }
+  .hero-stat:first-child{padding-left:0}
+  .hero-stat:last-child{padding-right:0}
+  .stat-num{
+    font-family:'Playfair Display',serif;
+    font-size:38px;color:var(--chocolate);font-weight:700;
+    line-height:1;
+    font-style:italic;
+  }
+  .stat-num .num-suffix{
+    font-size:20px;color:var(--gold-deep);
+    font-style:italic;
+    margin-left:2px;
+  }
+  .stat-label{
+    font-size:10px;color:var(--muted);
+    margin-top:10px;letter-spacing:.25em;text-transform:uppercase;font-weight:600;
+  }
+
+  /* HERO VISUAL — EDITORIAL PREMIUM */
   .hero-visual{
     position:relative;
-    height:620px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    height:640px;
   }
+
   .hero-frame{
     position:absolute;
-    border-radius:20px;
     overflow:hidden;
     box-shadow:var(--shadow-lg);
   }
-  .hero-frame::before{
-    content:"";position:absolute;inset:0;
-    border:1px solid rgba(255,251,245,.3);
-    border-radius:20px;
-    z-index:2;pointer-events:none;
+  .hero-frame img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform 1.4s cubic-bezier(.2,.8,.2,1);
   }
-  .hero-frame img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
-  .hero-frame:hover img{transform:scale(1.04)}
+  .hero-frame:hover img{transform:scale(1.05)}
 
+  /* Main image — with gold corner accents */
   .hero-frame-1{
     width:62%;height:78%;
     top:0;right:0;
     z-index:2;
+    border-radius:4px;
   }
-  .hero-frame-1::after{
-    content:"";position:absolute;
-    top:-12px;left:-12px;right:12px;bottom:12px;
+  .hero-frame-1::before{
+    content:"";position:absolute;inset:0;
+    border:1px solid rgba(255,251,245,.3);
+    z-index:2;pointer-events:none;
+  }
+  /* Gold corner accents */
+  .hero-frame-1 .corner{
+    position:absolute;width:40px;height:40px;
     border:1px solid var(--gold);
-    border-radius:20px;
-    z-index:-1;
-    opacity:.6;
+    z-index:3;pointer-events:none;
   }
+  .hero-frame-1 .corner.tl{top:-8px;left:-8px;border-right:none;border-bottom:none}
+  .hero-frame-1 .corner.tr{top:-8px;right:-8px;border-left:none;border-bottom:none}
+  .hero-frame-1 .corner.bl{bottom:-8px;left:-8px;border-right:none;border-top:none}
+  .hero-frame-1 .corner.br{bottom:-8px;right:-8px;border-left:none;border-top:none}
 
+  /* Secondary image — framed with milk border */
   .hero-frame-2{
     width:44%;height:52%;
     bottom:0;left:0;
     z-index:3;
-    border:6px solid var(--milk);
-  }
-  .hero-frame-2::after{
-    content:"";position:absolute;
-    inset:-14px;
-    border:1px solid var(--gold);
-    border-radius:26px;
-    z-index:-1;
-    opacity:.5;
+    border:8px solid var(--milk);
+    border-radius:4px;
+    box-shadow:
+      0 30px 60px rgba(62,42,31,.25),
+      0 0 0 1px rgba(201,160,99,.2);
   }
 
+  /* Floating sun medallion */
   .hero-sun{
     position:absolute;
-    top:36px;left:40%;
-    width:90px;height:90px;
+    top:30px;left:42%;
+    width:84px;height:84px;
     border-radius:50%;
-    background:radial-gradient(circle, var(--gold-soft) 0%, var(--gold) 60%, transparent 70%);
-    z-index:1;
-    opacity:.85;
-    animation:sunGlow 4s ease-in-out infinite;
+    background:
+      radial-gradient(circle at 30% 30%, #FFE9B8 0%, var(--gold-soft) 35%, var(--gold) 70%, var(--gold-deep) 100%);
+    z-index:4;
     display:flex;align-items:center;justify-content:center;
-    font-size:34px;
-    box-shadow:0 0 60px rgba(201,160,99,.4);
+    font-size:30px;
+    box-shadow:
+      0 0 0 6px var(--milk),
+      0 0 0 7px var(--gold),
+      0 20px 50px rgba(201,160,99,.5);
+    animation:sunFloat 6s ease-in-out infinite;
   }
-  @keyframes sunGlow{
-    0%,100%{transform:scale(1);box-shadow:0 0 60px rgba(201,160,99,.4)}
-    50%{transform:scale(1.05);box-shadow:0 0 80px rgba(201,160,99,.55)}
+  @keyframes sunFloat{
+    0%,100%{transform:translateY(0) rotate(0deg)}
+    50%{transform:translateY(-8px) rotate(8deg)}
+  }
+  .hero-sun::before{
+    content:"";position:absolute;inset:-18px;
+    border:1px dashed var(--gold);border-radius:50%;
+    opacity:.4;
+    animation:spin 30s linear infinite;
   }
 
+  /* Elegant tag card */
   .hero-tag-card{
     position:absolute;
-    bottom:40px;right:-10px;
-    z-index:4;
+    bottom:30px;right:-10px;
+    z-index:5;
     background:var(--milk);
-    padding:18px 22px;
-    border-radius:16px;
-    box-shadow:var(--shadow-lg);
+    padding:16px 22px;
+    border-radius:100px;
+    box-shadow:0 20px 50px rgba(62,42,31,.15);
     display:flex;align-items:center;gap:14px;
-    border:1px solid rgba(201,160,99,.15);
+    border:1px solid rgba(201,160,99,.2);
   }
   .hero-tag-card .emoji{
-    width:44px;height:44px;border-radius:50%;
-    background:linear-gradient(135deg,var(--gold-soft),var(--gold));
+    width:40px;height:40px;border-radius:50%;
+    background:linear-gradient(135deg,var(--cream-soft),var(--gold-soft));
     display:flex;align-items:center;justify-content:center;
-    font-size:22px;
+    font-size:20px;
+    flex-shrink:0;
   }
-  .hero-tag-card .txt{font-size:12px;color:var(--muted);line-height:1.3}
+  .hero-tag-card .txt{font-size:11px;color:var(--muted);line-height:1.3;letter-spacing:.05em}
   .hero-tag-card .txt strong{
     display:block;color:var(--chocolate);
     font-family:'Playfair Display',serif;
-    font-size:15px;font-weight:700;margin-bottom:2px;
+    font-size:14px;font-weight:700;margin-bottom:2px;
+    font-style:italic;
+  }
+
+  /* Scroll indicator */
+  .scroll-indicator{
+    position:absolute;
+    bottom:30px;left:50%;transform:translateX(-50%);
+    z-index:3;
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+    color:var(--chocolate-soft);
+    opacity:.6;
+  }
+  .scroll-indicator .label{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:11px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+  }
+  .scroll-indicator .line{
+    width:1px;height:40px;
+    background:linear-gradient(180deg,var(--gold),transparent);
+    animation:scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse{
+    0%,100%{opacity:.3;transform:scaleY(1)}
+    50%{opacity:1;transform:scaleY(1.2)}
   }
 
   /* SECTION */
@@ -471,26 +614,32 @@
 
   @media (max-width:960px){
     .hero-grid,.story-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
-    .hero-visual{height:460px;order:-1}
+    .hero-visual{height:480px;order:-1}
     .hero h1 .line2{padding-left:0}
     .hero h1 .line2::before{display:none}
+    .hero-side-label{display:none}
     .gallery-grid{grid-template-columns:repeat(2,1fr)}
     .reviews-grid{grid-template-columns:1fr}
     .footer-grid{grid-template-columns:1fr 1fr;gap:30px}
     .newsletter{padding:50px 28px}
     section{padding:80px 0}
-    .hero-ornament{top:110px}
+    .hero-ornament-top{top:110px}
+    .hero-stat{padding:0 16px}
   }
   @media (max-width:640px){
     .nav-links{display:none}
     .menu-toggle{display:flex}
-    .hero-stats{gap:24px;flex-wrap:wrap}
-    .stat-num{font-size:28px}
+    .hero-stats{flex-wrap:wrap}
+    .hero-stat{flex-basis:50%;padding:12px 0}
+    .hero-stat:nth-child(2)::before{display:none}
+    .stat-num{font-size:30px}
     .footer-grid{grid-template-columns:1fr}
     .footer-bottom{flex-direction:column;text-align:center}
     .newsletter-form{flex-direction:column;border-radius:20px;background:transparent;padding:0;border:none;gap:12px}
     .newsletter-form input{background:rgba(255,251,245,.1);border-radius:999px;border:1px solid rgba(255,251,245,.15)}
-    .hero-sun{width:70px;height:70px;font-size:26px;top:20px}
+    .hero-sun{width:64px;height:64px;font-size:22px;top:20px}
+    .hero-tag-card{right:0;bottom:10px;padding:12px 16px}
+    .scroll-indicator{display:none}
   }
 </style>
 </head>
@@ -518,395 +667,24 @@
   </div>
 </nav>
 
-<!-- HERO — PREMIUM -->
+<!-- HERO — PREMIUM EDITORIAL -->
 <header class="hero">
-  <div class="hero-ornament">
+  <!-- Vertical side label -->
+  <div class="hero-side-label" data-en="Maison de Pâtisserie" data-fr="Maison de Pâtisserie">Maison de Pâtisserie</div>
+
+  <!-- Top ornament -->
+  <div class="hero-ornament-top">
     <span class="line"></span>
-    <span data-en="Maison de Pâtisserie · Yerevan" data-fr="Maison de Pâtisserie · Erevan">Maison de Pâtisserie · Yerevan</span>
+    <span class="diamond"></span>
+    <span data-en="Est. MMXXVI · Yerevan" data-fr="Fondé MMXXVI · Erevan">Est. MMXXVI · Yerevan</span>
+    <span class="diamond"></span>
     <span class="line"></span>
   </div>
+
   <div class="container hero-grid">
     <div class="hero-text">
-      <div class="hero-badge"><span class="dot"></span> <span data-en="Est. 2026 · Artisan Bakery" data-fr="Fondé en 2026 · Boulangerie Artisanale">Est. 2026 · Artisan Bakery</span></div>
-      <h1>
-        <span class="line1" data-en="Sun-kissed" data-fr="Baisers">Sun-kissed</span>
-        <span class="line2" data-en="bakes &amp; golden mornings." data-fr="de soleil &amp; matins dorés.">bakes &amp; golden mornings.</span>
-      </h1>
-      <p class="hero-tag" data-en="A cozy French-inspired patisserie, where every croissant is a little piece of morning sunshine." data-fr="Une pâtisserie d'inspiration française, où chaque croissant est un petit rayon de soleil matinal.">A cozy French-inspired patisserie, where every croissant is a little piece of morning sunshine.</p>
-      <div class="hero-cta">
-        <a href="#menu" class="btn" data-en="Explore the Menu →" data-fr="Découvrir la Carte →">Explore the Menu →</a>
-        <a href="#order" class="btn btn-ghost" data-en="Order for Pickup" data-fr="Commander à emporter">Order for Pickup</a>
-      </div>
-      <div class="hero-stats">
-        <div>
-          <div class="stat-num">20+</div>
-          <div class="stat-label" data-en="Artisan recipes" data-fr="Recettes artisanales">Artisan recipes</div>
-        </div>
-        <div>
-          <div class="stat-num">100%</div>
-          <div class="stat-label" data-en="Organic ingredients" data-fr="Ingrédients biologiques">Organic ingredients</div>
-        </div>
-        <div>
-          <div class="stat-num" data-en="Daily" data-fr="Quotidien">Daily</div>
-          <div class="stat-label" data-en="Small-batch baking" data-fr="Cuisson en petites séries">Small-batch baking</div>
-        </div>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="hero-sun">☀️</div>
-      <div class="hero-frame hero-frame-1">
-        <img src="https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4583.jpg?v=1788713439" alt="Croissant">
-      </div>
-      <div class="hero-frame hero-frame-2">
-        <img src="https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4590.jpg?v=1788713438" alt="Macarons">
-      </div>
-      <div class="hero-tag-card">
-        <div class="emoji">🥐</div>
-        <div class="txt">
-          <strong data-en="Baked fresh" data-fr="Fraîchement cuits">Baked fresh</strong>
-          <span data-en="Every morning at 6 AM" data-fr="Chaque matin à 6h">Every morning at 6 AM</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- STORY -->
-<section class="story" id="story">
-  <div class="container story-grid">
-    <div class="story-img fade-up">
-      <img src="https://image.qwenlm.ai/public_source/5eb8a898-e260-4e57-9046-22704bfd1f67/101694d0e-8d68-4466-971b-6534be6b7b8e.png" alt="Our bakery interior">
-    </div>
-    <div class="story-text fade-up">
-      <span class="section-eyebrow" data-en="Our Story" data-fr="Notre Histoire">Our Story</span>
-      <h2 data-en="Where French craft meets Armenian warmth." data-fr="Là où l'artisanat français rencontre la chaleur arménienne.">Where French craft meets Armenian warmth.</h2>
-      <p class="lead" data-en="&quot;Every bite is a little piece of morning sunshine.&quot;" data-fr="&quot;Chaque bouchée est un petit rayon de soleil matinal.&quot;">"Every bite is a little piece of morning sunshine."</p>
-      <p data-en="Founded in 2026, Soleil Bakery was born from a deep love for the art of French patisserie, blended seamlessly with the warmth of Armenian hospitality." data-fr="Fondée en 2026, Soleil Bakery est née d'un amour profond pour l'art de la pâtisserie française, mêlé avec chaleur à l'hospitalité arménienne.">Founded in 2026, Soleil Bakery was born from a deep love for the art of French patisserie, blended seamlessly with the warmth of Armenian hospitality.</p>
-      <p data-en="It is the dream-turned-reality of master baker Ann, who spent years perfecting her craft alongside Paris's finest pastry masters." data-fr="C'est le rêve devenu réalité de la maître-boulangère Ann, qui a passé des années à perfectionner son art aux côtés des meilleurs pâtissiers de Paris.">It is the dream-turned-reality of master baker Ann, who spent years perfecting her craft alongside Paris's finest pastry masters.</p>
-      <p data-en="We believe that true quality lies in the details. That is why we bake in small batches throughout the day, using only pristine local organic ingredients and exquisite butter sourced from select artisans." data-fr="Nous croyons que la vraie qualité réside dans les détails. C'est pourquoi nous cuisons en petites séries tout au long de la journée, en utilisant uniquement des ingrédients biologiques locaux et un beurre exquis provenant d'artisans sélectionnés.">We believe that true quality lies in the details. That is why we bake in small batches throughout the day, using only pristine local organic ingredients and exquisite butter sourced from select artisans.</p>
-      <div class="story-signature">
-        <div class="avatar">A</div>
-        <div>
-          <div class="name">Ann</div>
-          <div class="role" data-en="Founder &amp; Master Baker" data-fr="Fondatrice &amp; Maître Boulangère">Founder &amp; Master Baker</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MENU -->
-<section id="menu">
-  <div class="container">
-    <div class="section-head fade-up">
-      <span class="section-eyebrow" data-en="The Menu" data-fr="La Carte">The Menu</span>
-      <h2 data-en="Baked with love, served with care." data-fr="Cuit avec amour, servi avec soin.">Baked with love, served with care.</h2>
-      <p data-en="From flaky croissants to delicate macarons — explore our handcrafted selection, baked fresh every morning." data-fr="Des croissants feuilletés aux macarons délicats — découvrez notre sélection artisanale, cuite fraîche chaque matin.">From flaky croissants to delicate macarons — explore our handcrafted selection, baked fresh every morning.</p>
-    </div>
-
-    <div class="menu-tabs fade-up">
-      <button class="tab active" data-cat="pastries" data-en="Pastries &amp; Croissants" data-fr="Viennoiseries &amp; Croissants">Pastries &amp; Croissants</button>
-      <button class="tab" data-cat="breads" data-en="Breads" data-fr="Pains">Breads</button>
-      <button class="tab" data-cat="cakes" data-en="Cakes &amp; Desserts" data-fr="Gâteaux &amp; Desserts">Cakes &amp; Desserts</button>
-      <button class="tab" data-cat="beverages" data-en="Coffee &amp; Tea" data-fr="Café &amp; Thé">Coffee &amp; Tea</button>
-    </div>
-
-    <div class="menu-grid" id="menuGrid"></div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section class="gallery" id="gallery">
-  <div class="container">
-    <div class="section-head fade-up">
-      <span class="section-eyebrow" data-en="Sweet Moments" data-fr="Doux Moments">Sweet Moments</span>
-      <h2 data-en="A gallery of golden hours." data-fr="Une galerie d'heures dorées.">A gallery of golden hours.</h2>
-      <p data-en="Snapshots from our kitchen, our counters, and the little joys of every morning at Soleil." data-fr="Instantanés de notre cuisine, de nos comptoirs, et des petites joies de chaque matin chez Soleil.">Snapshots from our kitchen, our counters, and the little joys of every morning at Soleil.</p>
-    </div>
-    <div class="gallery-grid fade-up">
-      <div class="gallery-item"><img src="https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4593.jpg?v=1788715537" alt=""></div>
-      <div class="gallery-item"><img src="https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4588.jpg?v=1788713437" alt=""></div>
-      <div class="gallery-item"><img src="https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4612.jpg?v=1788715536" alt=""></div>
-      <div class="gallery-item"><img src="https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4620.jpg?v=1788715537" alt=""></div>
-      <div class="gallery-item"><img src="https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4606.jpg?v=1788715537" alt=""></div>
-      <div class="gallery-item"><img src="https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4590.jpg?v=1788713438" alt=""></div>
-    </div>
-  </div>
-</section>
-
-<!-- REVIEWS -->
-<section id="reviews">
-  <div class="container">
-    <div class="section-head fade-up">
-      <span class="section-eyebrow" data-en="Kind Words" data-fr="Témoignages">Kind Words</span>
-      <h2 data-en="Loved by our regulars." data-fr="Adoré de nos habitués.">Loved by our regulars.</h2>
-      <p data-en="What our guests say about their mornings at Soleil." data-fr="Ce que nos clients disent de leurs matins chez Soleil.">What our guests say about their mornings at Soleil.</p>
-    </div>
-    <div class="reviews-grid fade-up">
-      <div class="review-card">
-        <div class="stars">★★★★★</div>
-        <p class="review-text" data-en="&quot;The almond croissant is a revelation — flaky, buttery, and perfectly balanced. This place feels like a tiny Parisian corner in Yerevan.&quot;" data-fr="&quot;Le croissant aux amandes est une révélation — feuilleté, beurré, parfaitement équilibré. Cet endroit ressemble à un petit coin parisien à Erevan.&quot;">"The almond croissant is a revelation — flaky, buttery, and perfectly balanced. This place feels like a tiny Parisian corner in Yerevan."</p>
-        <div class="review-author">
-          <div class="review-avatar">LM</div>
-          <div>
-            <div class="review-name">Lilit M.</div>
-            <div class="review-date" data-en="Regular since opening" data-fr="Habituée depuis l'ouverture">Regular since opening</div>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="stars">★★★★★</div>
-        <p class="review-text" data-en="&quot;I come here every Sunday for the sourdough and a matcha latte. The atmosphere, the smell of fresh bread — pure happiness.&quot;" data-fr="&quot;Je viens ici chaque dimanche pour le levain et un matcha latte. L'atmosphère, l'odeur du pain frais — du pur bonheur.&quot;">"I come here every Sunday for the sourdough and a matcha latte. The atmosphere, the smell of fresh bread — pure happiness."</p>
-        <div class="review-author">
-          <div class="review-avatar">DK</div>
-          <div>
-            <div class="review-name">David K.</div>
-            <div class="review-date" data-en="Verified customer" data-fr="Client vérifié">Verified customer</div>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="stars">★★★★★</div>
-        <p class="review-text" data-en="&quot;The Napoleon cake is exactly how my grandmother used to make it. You can taste the care in every layer. Thank you, Ann!&quot;" data-fr="&quot;Le gâteau Napoleon est exactement comme celui que ma grand-mère faisait. On sent le soin dans chaque couche. Merci, Ann !&quot;">"The Napoleon cake is exactly how my grandmother used to make it. You can taste the care in every layer. Thank you, Ann!"</p>
-        <div class="review-author">
-          <div class="review-avatar">SA</div>
-          <div>
-            <div class="review-name">Sofia A.</div>
-            <div class="review-date" data-en="Verified customer" data-fr="Cliente vérifiée">Verified customer</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NEWSLETTER -->
-<section style="padding-top:0">
-  <div class="newsletter fade-up" id="order">
-    <span class="section-eyebrow" style="color:var(--gold)" data-en="Join the Family" data-fr="Rejoignez la Famille">Join the Family</span>
-    <h2 data-en="Get 10% off your first order ☀️" data-fr="Obtenez -10% sur votre première commande ☀️">Get 10% off your first order ☀️</h2>
-    <p data-en="Subscribe to our newsletter for seasonal flavors, new recipes, and a little sweetness in your inbox every week." data-fr="Abonnez-vous à notre newsletter pour les saveurs saisonnières, les nouvelles recettes, et un peu de douceur chaque semaine.">Subscribe to our newsletter for seasonal flavors, new recipes, and a little sweetness in your inbox every week.</p>
-    <form class="newsletter-form" onsubmit="handleNewsletter(event)">
-      <input type="email" placeholder="your@email.com" required>
-      <button type="submit" data-en="Subscribe" data-fr="S'abonner">Subscribe</button>
-    </form>
-    <p class="newsletter-note" data-en="No spam, ever. Unsubscribe anytime." data-fr="Pas de spam, jamais. Désabonnez-vous à tout moment.">No spam, ever. Unsubscribe anytime.</p>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="container">
-    <div class="contact-grid">
-      <div class="contact-info fade-up">
-        <span class="section-eyebrow" data-en="Visit Us" data-fr="Rendez-nous visite">Visit Us</span>
-        <h2 data-en="Come say hello." data-fr="Venez dire bonjour.">Come say hello.</h2>
-        <p data-en="We'd love to welcome you with a warm croissant and a smile." data-fr="Nous serions ravis de vous accueillir avec un croissant chaud et un sourire.">We'd love to welcome you with a warm croissant and a smile.</p>
-        <div class="contact-list">
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div>
-              <div class="contact-label" data-en="Address" data-fr="Adresse">Address</div>
-              <div class="contact-value">12/4 Abovyan Street, Yerevan</div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <div>
-              <div class="contact-label" data-en="Opening Hours" data-fr="Heures d'ouverture">Opening Hours</div>
-              <div class="contact-value" data-en="Monday – Sunday · 08:30 AM – 09:00 PM" data-fr="Lundi – Dimanche · 08h30 – 21h00">Monday – Sunday · 08:30 AM – 09:00 PM</div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </div>
-            <div>
-              <div class="contact-label" data-en="Phone" data-fr="Téléphone">Phone</div>
-              <div class="contact-value"><a href="tel:+37410555555">+374 (10) 55-55-55</a></div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            <div>
-              <div class="contact-label" data-en="Email" data-fr="E-mail">Email</div>
-              <div class="contact-value"><a href="mailto:hello@soleilbakery.am">hello@soleilbakery.am</a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="contact-map fade-up">
-        <iframe
-          src="https://www.openstreetmap.org/export/embed.html?bbox=44.5050%2C40.1780%2C44.5250%2C40.1920&amp;layer=mapnik&amp;marker=40.1850%2C44.5150"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Soleil Bakery location">
-        </iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo">Soleil<span style="color:var(--gold)">☀️</span></div>
-        <p data-en="Sun-kissed bakes and golden mornings. A cozy French-inspired patisserie in the heart of Yerevan." data-fr="Baisers de soleil et matins dorés. Une pâtisserie d'inspiration française au cœur d'Erevan.">Sun-kissed bakes and golden mornings. A cozy French-inspired patisserie in the heart of Yerevan.</p>
-      </div>
-      <div class="footer-col">
-        <h4 data-en="Menu" data-fr="La Carte">Menu</h4>
-        <ul>
-          <li><a href="#menu" data-en="Pastries" data-fr="Viennoiseries">Pastries</a></li>
-          <li><a href="#menu" data-en="Breads" data-fr="Pains">Breads</a></li>
-          <li><a href="#menu" data-en="Cakes" data-fr="Gâteaux">Cakes</a></li>
-          <li><a href="#menu" data-en="Beverages" data-fr="Boissons">Beverages</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4 data-en="Visit" data-fr="Visite">Visit</h4>
-        <ul>
-          <li><a href="#contact" data-en="Location" data-fr="Adresse">Location</a></li>
-          <li><a href="#contact" data-en="Hours" data-fr="Horaires">Hours</a></li>
-          <li><a href="#order" data-en="Order Online" data-fr="Commander">Order Online</a></li>
-          <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4 data-en="Follow" data-fr="Suivez-nous">Follow</h4>
-        <div class="socials">
-          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.5a8.16 8.16 0 0 0 4.77 1.52V6.6a4.85 4.85 0 0 1-1.84-.01z"/></svg></a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div data-en="© 2026 Soleil Bakery · Made with ☀️ in Yerevan" data-fr="© 2026 Soleil Bakery · Fait avec ☀️ à Erevan">© 2026 Soleil Bakery · Made with ☀️ in Yerevan</div>
-      <div data-en="Baked fresh daily · 08:30 – 21:00" data-fr="Cuit frais chaque jour · 08h30 – 21h00">Baked fresh daily · 08:30 – 21:00</div>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // LANGUAGE TOGGLE
-  let currentLang = localStorage.getItem('soleil_lang') || 'en';
-  function applyLang(lang){
-    currentLang = lang;
-    localStorage.setItem('soleil_lang', lang);
-    document.documentElement.lang = lang;
-    document.querySelectorAll('[data-en]').forEach(el=>{
-      const txt = el.getAttribute('data-' + lang);
-      if(txt !== null){
-        if(el.tagName === 'INPUT') el.placeholder = txt;
-        else el.innerHTML = txt;
-      }
-    });
-    document.querySelectorAll('.lang-btn').forEach(b=>{
-      b.classList.toggle('active', b.dataset.lang === lang);
-    });
-    renderMenu(currentCat);
-  }
-  document.querySelectorAll('.lang-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>applyLang(btn.dataset.lang));
-  });
-
-  // MENU DATA — bilingual
-  const menu = {
-    pastries:[
-      {en:{name:"Classic Butter Croissant",desc:"Flaky, buttery, golden — the Parisian classic."},fr:{name:"Croissant au Beurre Classique",desc:"Feuilleté, beurré, doré — le classique parisien."},price:"1.80",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4583.jpg?v=1788713439"},
-      {en:{name:"Almond Croissant",desc:"Filled with almond cream and toasted flakes."},fr:{name:"Croissant aux Amandes",desc:"Garni de crème d'amande et d'éclats torréfiés."},price:"2.80",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4584.jpg?v=1788713438"},
-      {en:{name:"Raspberry Danish",desc:"Buttery pastry with fresh raspberry compote."},fr:{name:"Danoise à la Framboise",desc:"Pâte beurrée et compote de framboises fraîches."},price:"2.30",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4586.jpg?v=1788713435"},
-      {en:{name:"Pain au Chocolat",desc:"Two bars of dark chocolate wrapped in puff pastry."},fr:{name:"Pain au Chocolat",desc:"Deux barres de chocolat noir dans une pâte feuilletée."},price:"2.10",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4578.jpg?v=1788713439"},
-      {en:{name:"Pistachio Cream Croissant",desc:"Our signature — silky pistachio cream inside."},fr:{name:"Croissant à la Crème de Pistache",desc:"Notre signature — crème de pistache soyeuse à l'intérieur."},price:"3.20",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4593.jpg?v=1788715537"},
-      {en:{name:"Apple & Cinnamon Turnover",desc:"Warm apples, cinnamon, and a golden crust."},fr:{name:"Chausson Pomme-Cannelle",desc:"Pommes chaudes, cannelle et croûte dorée."},price:"2.00",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4595.jpg?v=1788715537"},
-    ],
-    breads:[
-      {en:{name:"French Baguette",desc:"Crispy crust, airy crumb — baked every hour."},fr:{name:"Baguette Française",desc:"Croûte croustillante, mie aérienne — cuite chaque heure."},price:"1.30",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4587.jpg?v=1788713436"},
-      {en:{name:"Artisan Sourdough Bread",desc:"48-hour fermented, deeply flavored loaf."},fr:{name:"Pain au Levain Artisanal",desc:"Fermenté 48h, pain aux saveurs profondes."},price:"3.00",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4588.jpg?v=1788713437"},
-      {en:{name:"Multigrain Seeded Loaf",desc:"Hearty, nutritious, full of seeds and grains."},fr:{name:"Pain Multigrains aux Graines",desc:"Riche, nutritif, plein de graines et céréales."},price:"3.40",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4598.jpg?v=1788715537"},
-      {en:{name:"Ciabatta Roll",desc:"Soft Italian-style roll, perfect for sandwiches."},fr:{name:"Petit Pain Ciabatta",desc:"Pain moelleux style italien, parfait pour les sandwichs."},price:"1.50",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4603.jpg?v=1788715537"},
-    ],
-    cakes:[
-      {en:{name:"Macaron Selection",desc:"Box of 6 — seasonal flavors, made daily."},fr:{name:"Sélection de Macarons",desc:"Coffret de 6 — saveurs saisonnières, faits chaque jour."},price:"7.50",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4590.jpg?v=1788713438"},
-      {en:{name:"Signature Napoleon Cake",desc:"Per slice — layers of crisp pastry and custard."},fr:{name:"Gâteau Napoléon Signature",desc:"La part — couches de pâte croustillante et crème pâtissière."},price:"3.50",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4591.jpg?v=1788713439"},
-      {en:{name:"New York Cheesecake",desc:"Per slice — creamy, dense, classic."},fr:{name:"Cheesecake New-Yorkais",desc:"La part — crémeux, dense, classique."},price:"3.80",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4604.jpg?v=1788715536"},
-      {en:{name:"Belgian Chocolate Brownie",desc:"Fudgy, rich, with 70% dark chocolate."},fr:{name:"Brownie au Chocolat Belge",desc:"Fondant, riche, au chocolat noir à 70%."},price:"2.50",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4606.jpg?v=1788715537"},
-      {en:{name:"Strawberry Tartlet",desc:"Buttery shell, vanilla cream, fresh berries."},fr:{name:"Tartelette aux Fraises",desc:"Coque beurrée, crème vanille, fruits frais."},price:"3.40",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4612.jpg?v=1788715536"},
-    ],
-    beverages:[
-      {en:{name:"Espresso",desc:"Single origin, pulled to perfection."},fr:{name:"Espresso",desc:"Origine unique, extrait à la perfection."},price:"1.50",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4616.jpg?v=1788715536"},
-      {en:{name:"Cappuccino / Latte",desc:"Silky steamed milk with our house espresso."},fr:{name:"Cappuccino / Latte",desc:"Lait mousseux soyeux avec notre espresso maison."},price:"2.50",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4620.jpg?v=1788715537"},
-      {en:{name:"Iced Vanilla Matcha Latte",desc:"Ceremonial matcha, vanilla, oat milk."},fr:{name:"Latte Matcha Vanille Glacé",desc:"Matcha cérémonial, vanille, lait d'avoine."},price:"3.60",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4621.jpg?v=1788715537"},
-      {en:{name:"Fresh Orange Juice",desc:"Freshly squeezed, no sugar added."},fr:{name:"Jus d'Orange Frais",desc:"Pressé minute, sans sucre ajouté."},price:"3.00",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4624.jpg?v=1788715536"},
-      {en:{name:"Artisan Herbal Tea",desc:"Pot of loose-leaf, seasonal blends."},fr:{name:"Tisane Artisanale",desc:"Théière de plantes en vrac, mélanges saisonniers."},price:"2.80",img:"https://cdn.shopify.com/s/files/1/0833/1303/3471/files/IMG_4625.jpg?v=1788715536"},
-    ]
-  };
-
-  const grid = document.getElementById('menuGrid');
-  let currentCat = 'pastries';
-  function renderMenu(cat){
-    currentCat = cat;
-    grid.innerHTML = menu[cat].map(item=>{
-      const t = item[currentLang];
-      return `
-      <article class="menu-card">
-        <div class="menu-card-img"><img src="${item.img}" alt="${t.name}" loading="lazy"></div>
-        <div class="menu-card-body">
-          <h3>${t.name}</h3>
-          <p class="desc">${t.desc}</p>
-          <div class="menu-card-foot">
-            <div class="price">€${item.price}</div>
-            <button class="add-btn" aria-label="Add">+</button>
-          </div>
-        </div>
-      </article>`;
-    }).join('');
-  }
-  renderMenu('pastries');
-
-  document.querySelectorAll('.tab').forEach(tab=>{
-    tab.addEventListener('click',()=>{
-      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-      tab.classList.add('active');
-      renderMenu(tab.dataset.cat);
-    });
-  });
-
-  // Fade-up on scroll
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
-  },{threshold:.15});
-  document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
-
-  // Newsletter
-  function handleNewsletter(e){
-    e.preventDefault();
-    const input = e.target.querySelector('input');
-    const btn = e.target.querySelector('button');
-    const ok = currentLang === 'fr' ? 'Bienvenue ☀️' : 'Welcome ☀️';
-    btn.textContent = ok;
-    btn.style.background = "var(--green-soft)";
-    input.value = "";
-    setTimeout(()=>{ btn.textContent = btn.getAttribute('data-' + currentLang); btn.style.background = ""; }, 2500);
-  }
-
-  // Nav shadow on scroll
-  const nav = document.querySelector('.nav');
-  window.addEventListener('scroll',()=>{
-    if(window.scrollY > 20) nav.style.boxShadow = "0 4px 20px rgba(62,42,31,.06)";
-    else nav.style.boxShadow = "none";
-  });
-
-  // Apply saved language
-  applyLang(currentLang);
-</script>
-</body>
-</html>
+      <!-- Premium monogram badge -->
+      <div class="hero-badge">
+        <div class="monogram">S</div>
+        <div class="badge-text">
+          <span class="est" data-en="Established 2026" data-fr="Fondée en 2026">Establish
